@@ -1,0 +1,85 @@
+@model List<SistemaCine.Models.Cine>
+
+<div class="container mt-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="fw-bold">🎬 Sistema de Cine</h1>
+            <p class="text-muted">
+                Gestión de películas y funciones
+            </p>
+        </div>
+
+        <a href="/Cine/Crear" class="btn btn-dark btn-lg">
+            + Nueva Película
+        </a>
+    </div>
+
+    <div class="card shadow-lg border-0 rounded-4">
+
+        <div class="card-body">
+
+            <table class="table table-hover align-middle">
+
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Película</th>
+                        <th>Sala</th>
+                        <th>Fecha</th>
+                        <th>Disponible</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    @if(Model.Count == 0)
+                    {
+                        <tr>
+                            <td colspan="5" class="text-center p-5">
+                                <h5>No hay películas registradas 🎥</h5>
+                            </td>
+                        </tr>
+                    }
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+
+                            <td class="fw-semibold">
+                                @item.Pelicula
+                            </td>
+
+                            <td>@item.Sala</td>
+
+                            <td>
+                                @item.FechaFuncion.ToString("dd/MM/yyyy HH:mm")
+                            </td>
+
+                            <td>
+                                @if(item.Disponible)
+                                {
+                                    <span class="badge bg-success p-2">
+                                        Disponible
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger p-2">
+                                        No disponible
+                                    </span>
+                                }
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
